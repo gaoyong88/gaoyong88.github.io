@@ -176,6 +176,21 @@ theme = &#34;hugo-ivy&#34;
 </code></pre><p>在<code>..\my_site\content</code>文件夹下生成与config文件中相应的子目录，如<code>\publication</code>，<code>\other</code>等。</p>
 <p>然后分别加一些相应的markdown文件。</p>
 <h4 id="预览">预览</h4>
+<pre tabindex="0"><code>hugo server
+</code></pre><p>一切顺利，我现在可以在https://localhost:1313/这里预览网站的样子。</p>
+<p>回到config文件中，修改<code>baseurl = &quot;https://gaoyong88.github.io/&quot;</code></p>
+<h4 id="推送到github中">推送到github中</h4>
+<ul>
+<li>在github上新生成一个库，称为<strong>gaoyong88.github.io</strong></li>
+</ul>
+<pre tabindex="0"><code>hugo
+
+cd public
+git init
+git remote add origin git@github.com:gaoyong88/gaoyong88.github.io.git
+git add .
+git commit -m &#34;first build&#34;
+</code></pre><p>好了，我在https://gaoyong88.github.io/中看到我的网站了。</p>
 
 
 
