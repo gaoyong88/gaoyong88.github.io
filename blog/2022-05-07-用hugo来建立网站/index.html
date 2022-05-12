@@ -179,10 +179,23 @@ theme = &#34;hugo-ivy&#34;
 <pre tabindex="0"><code>hugo server
 </code></pre><p>一切顺利，我现在可以在https://localhost:1313/这里预览网站的样子。</p>
 <p>回到config文件中，修改<code>baseurl = &quot;https://gaoyong88.github.io/&quot;</code></p>
-<h4 id="推送到github中">推送到github中</h4>
+<h4 id="与github建立联结">与github建立联结</h4>
 <ul>
 <li>在github上新生成一个库，称为<strong>gaoyong88.github.io</strong></li>
+<li>在git bash中生成ssh密钥</li>
 </ul>
+<pre tabindex="0"><code>$ ssh-keygen -t rsa -C &#34;vincentgy@gmail.com&#34;
+$ cd ~/.sh
+$ ls
+$ cat id_rsa.pub
+</code></pre><ul>
+<li>确认密钥成功。</li>
+</ul>
+<pre tabindex="0"><code>$ ssh -T git@github.com
+</code></pre><ul>
+<li>登录github。settting—&gt;SSH and GPG keys—&gt;New SSH keys，然后拷贝起去。</li>
+</ul>
+<h4 id="上传至github中">上传至github中</h4>
 <pre tabindex="0"><code>hugo
 
 cd public
@@ -198,6 +211,7 @@ git push -u origin master
 <li>必须进行“域名实名认证”，等2-3天让实名认证信息同步至管局。</li>
 <li>在阿里云上进行域名解析。</li>
 <li>在github项目页上找到<code>page</code>，然后将<code>Custom domain</code>项改为<code>gao-yong.cn</code>。</li>
+<li>现在可以在https://gao-yong.cn/中看到我的网站了。</li>
 </ul>
 
 
