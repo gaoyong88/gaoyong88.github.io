@@ -6,20 +6,7 @@
     <description>Recent content on Yong Gao</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>《地区基尼系数与幸福感》的R代码和说明</title>
-      <link>https://localhost:1313/blog/gini_happy/</link>
-      <pubDate>Fri, 25 Nov 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://localhost:1313/blog/gini_happy/</guid>
-      <description>这里是对《地区基尼系数与幸福感关系的“现象核实”——基于对数据生成过程的考察》一文（《社会科学研究》2023年第1期）的一些说明。相关的Rmd文件在这里​可以下载，欢迎所有人来复制和批评。
-文章的缘起 由于偶然的原因，我看到了某一篇关于地区基尼系数与幸福感关系的研究，数据来源于CGSS，它利用赫希曼提出的“隧道效应”来解释其发现。我直觉地认为，这种研究不太可靠，因为地区基尼系数的估算实在是误差太大了。于是我写了一篇短文来说明这一点，并且开始投稿。结果大多数期刊都认为这只是一个无关紧要或者太过显而易见的技术细节，并不值得发表（我同意前者，这确实是一个太过显而易见的技术细节；我不同意后者，因为现实中这个技术细节正在被很多人忽视）。多数期刊并没有给我外审机会，但一位匿名评审者提醒我注意一个事实：误差只会使得系数趋近于零。
-这个意见太对了。我无法解释如下现象：如果地区基尼系数的估算中误差极大，那么这只相当于是一种随机噪声，那么结果应当是两者之间不存在任何关系。毕竟我们无法用随机噪声来解释任何东西。但是我看到的文献中都确凿地发现两者之间存在关系（虽然关系的方向时而正向时而负向）。由此得到的一个可能推论是：地区基尼系数的估算虽然存在误差，但是这种误差并不是一种随机噪声，而是一种系统性偏差。这种系统性偏差诱导我们得出了某些假象性的结论。这是我后来发表的这篇文章的真正起点。我在此再次感谢那位评审者，我向他学到了很多。
-关于数据的说明 我找到了CGSS2013年的数据，然后进行了如下操作，来对于常规研究进行复制。下面是所有的R代码。我使用的CGSS2013数据是从官网下载的。这个数据共有11438个记录，包括了126个区县。问卷中幸福感的测量方式如下：“总的来说，您觉得您的生活是否幸福？”选项是从“非常不幸福”到“非常幸福”的五度区分。数据中有多个有关收入的测量，我选取的是被访者的家庭收入数据（a62），而不是被访者的个人收入数据(a8a)。这是因为以前同类研究大多采取家庭收入数据。
-library(pacman)p_load(tidyverse, haven, coefplot, MASS, lme4, ordinal, stargazer, ggrepel)cgss_sml &amp;lt;- read_stata(&amp;quot;cgss2013_14.dta&amp;quot;) %&amp;gt;%dplyr::select(id,happy = a36,income = a62,sex = a2,birth_y = a3a,edu = a7a,health = a15,marriage = a69,urban = vilorngh,sheng = s41,county = s43,community = s45,weight) %&amp;gt;%filter(happy &amp;gt; 0,income &amp;lt; 9999996,birth_y &amp;gt; 0,edu &amp;gt; 0,edu !</description>
-    </item>
-    
+    <lastBuildDate>Thu, 12 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>那时</title>
       <link>https://localhost:1313/blog/2022-05-12-%E5%B0%8F%E8%AF%97%E9%82%A3%E6%97%B6/</link>
