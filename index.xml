@@ -6,7 +6,20 @@
     <description>Recent content on Yong Gao</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 12 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>《地区基尼系数与幸福感》的R代码和说明</title>
+      <link>https://localhost:1313/blog/2023-01-01-%E5%9C%B0%E5%8C%BA%E5%9F%BA%E5%B0%BC%E7%B3%BB%E6%95%B0%E4%B8%8E%E5%B9%B8%E7%A6%8F%E6%84%9F/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://localhost:1313/blog/2023-01-01-%E5%9C%B0%E5%8C%BA%E5%9F%BA%E5%B0%BC%E7%B3%BB%E6%95%B0%E4%B8%8E%E5%B9%B8%E7%A6%8F%E6%84%9F/</guid>
+      <description>这里是对《地区基尼系数与幸福感关系的“现象核实”——基于对数据生成过程的考察》一文（《社会科学研究》2023年第1期）的一些说明。相关的Rmd文件在这里​可以下载，欢迎所有人来复制和批评。
+文章的缘起 由于偶然的原因，我看到了某一篇关于地区基尼系数与幸福感关系的研究，数据来源于CGSS，它利用赫希曼提出的“隧道效应”来解释其发现。我直觉地认为，这种研究不太可靠，因为地区基尼系数的估算实在是误差太大了。于是我写了一篇短文来说明这一点，并且开始投稿。结果大多数期刊都认为这只是一个无关紧要或者太过显而易见的技术细节，并不值得发表（我同意前者，这确实是一个太过显而易见的技术细节；我不同意后者，因为现实中这个技术细节正在被很多人忽视）。多数期刊并没有给我外审机会，但一位匿名评审者提醒我注意一个事实：误差只会使得系数趋近于零。
+这个意见太对了。我无法解释如下现象：如果地区基尼系数的估算中误差极大，那么这只相当于是一种随机噪声，那么结果应当是两者之间不存在任何关系。毕竟我们无法用随机噪声来解释任何东西。但是我看到的文献中都确凿地发现两者之间存在关系（虽然关系的方向时而正向时而负向）。由此得到的一个可能推论是：地区基尼系数的估算虽然存在误差，但是这种误差并不是一种随机噪声，而是一种系统性偏差。这种系统性偏差诱导我们得出了某些假象性的结论。这是我后来发表的这篇文章的真正起点。我在此再次感谢那位评审者，我向他学到了很多。
+关于数据的说明 我找到了CGSS2013年的数据，然后进行了如下操作，来对于常规研究进行复制。下面是所有的R代码。我使用的CGSS2013数据是从官网下载的。这个数据共有11438个记录，包括了126个区县。问卷中幸福感的测量方式如下：“总的来说，您觉得您的生活是否幸福？”选项是从“非常不幸福”到“非常幸福”的五度区分。数据中有多个有关收入的测量，我选取的是被访者的家庭收入数据（a62），而不是被访者的个人收入数据(a8a)。这是因为以前同类研究大多采取家庭收入数据。
+library(pacman)p_load(tidyverse, haven, coefplot, MASS, lme4, ordinal, stargazer, ggrepel)cgss_sml &amp;lt;- read_stata(&amp;quot;cgss2013_14.dta&amp;quot;) %&amp;gt;%dplyr::select(id,happy = a36,income = a62,sex = a2,birth_y = a3a,edu = a7a,health = a15,marriage = a69,urban = vilorngh,sheng = s41,county = s43,community = s45,weight) %&amp;gt;%filter(happy &amp;gt; 0,income &amp;lt; 9999996,birth_y &amp;gt; 0,edu &amp;gt; 0,edu !</description>
+    </item>
+    
     <item>
       <title>那时</title>
       <link>https://localhost:1313/blog/2022-05-12-%E5%B0%8F%E8%AF%97%E9%82%A3%E6%97%B6/</link>
@@ -43,35 +56,6 @@
   将Hugo加入到Windows路径设置中  右击“开始”—&amp;gt;系统—&amp;gt;高级系统设置—&amp;gt;环境变量—&amp;gt;在用户变量中找到path—&amp;gt;编辑—&amp;gt;浏览 选择你的d:\mywork\Hugo\bin 文件夹 然后确定。  创建网站  右击“开始”—&amp;gt;Windows Power Shell  C:\Program Files&amp;gt; cd d:\mywork\Hugo\sitesD:\mywork\Hugo\sites&amp;gt;hugo new site my_site  可以看到my_site文件夹下已经有了不少内容。  获取theme 我找到了谢益辉的一个主题。
 cd my_sitegit initgit submodule add https://github.com/yihui/hugo-ivy.git themes/hugo-ivy 编写config文件 在my_site文件夹下找到config文件，加入一些简单的内容。
 baseurl = &amp;#34;https://localhost:1313/&amp;#34;RelativeURLs=trueCanonifyURLs=truelanguageCode = &amp;#34;zh-cn&amp;#34;	DefaultContentLanguage = &amp;#34;zh-cn&amp;#34;title = &amp;#34;Yong Gao&amp;#34;theme = &amp;#34;hugo-ivy&amp;#34;[menu][[menu.</description>
-    </item>
-    
-    <item>
-      <title>《组织社会学》课程大纲</title>
-      <link>https://localhost:1313/teaching/2022%E7%BB%84%E7%BB%87%E7%A4%BE%E4%BC%9A%E5%AD%A6syllabus/</link>
-      <pubDate>Tue, 01 Mar 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://localhost:1313/teaching/2022%E7%BB%84%E7%BB%87%E7%A4%BE%E4%BC%9A%E5%AD%A6syllabus/</guid>
-      <description>组织社会学 一些基本的疑惑：
-  组织有智能吗？它的智能来自何处？它能够不断学习进化吗？
-  组织有道德吗？组织有理想吗？它的道德如何保障？它的道德如何堕落？
-  组织有记忆吗？它如何记忆？它有性格吗？它的神圣性由何而来？
-  最重要的，组织能够让我们——身处组织中的人——更为聪明、更有力量、更有道德吗？
-  这是一些永远伴随我们的问题。课程未必能够提供明确的回答，但我们尝试学习用社会学的思考方式来探索这些问题。
-课程简介 授课教师：高勇
-授课对象：中国政法大学本科生
-授课时间：春季学期
-授课方式：讲授与讨论结合。在讨论课前，所有选课的同学应在上课前都初步浏览必读文献，并在讨论题上发言讨论（不需要做PPT）。扩展文献可根据兴趣自由阅读。最后一次上课前提交一篇课程论文，不低于5千字，内容在本学期的主题中任选（使用学校统一论文封面，正文五号宋体）。
-成绩评定：百分制。课堂讨论，50分；课程论文，50分。
-课程论文评分标准：
-  使用组织社会学所涉及的基本概念和视角（20分）
-  结合现实生活，有充分的现实经验感（30分）-
-  对组织现象中的内在机制与逻辑有洞察（30分）-
-  文字表述顺畅（20分）
-  第一讲：组织的定义 阅读材料 韦伯：“十二 组织的概念与种类”，《社会学的基本概念》，顾忠华译，广西师范大学出版社，第64-67页
-参考阅读 伊万·伊利奇(Ivan Illich)，《去学校化社会》，吴康宁译，中国轻工业出版社
-Stephen Barley and Gideon Kunda, Gurus, hired guns, and warm bodies: itinerant experts in a knowledge economy (excerpts).
-Catherine Turco, The conversational firm.
-讨论问题 什么是组织？家族、家庭、小群体、朋友圈子、国家、政党、部落、学校、班级、系、课堂成员、社团？</description>
     </item>
     
     <item>
